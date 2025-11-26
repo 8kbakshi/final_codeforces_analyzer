@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 250 100% 99%;
+    --foreground: 250 20% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 250 20% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 250 20% 10%;
+
+    --primary: 263 70% 64%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 263 90% 75%;
+
+    --secondary: 220 60% 96%;
+    --secondary-foreground: 250 20% 10%;
+
+    --muted: 220 40% 96%;
+    --muted-foreground: 250 10% 50%;
+
+    --accent: 280 65% 70%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 40% 90%;
+    --input: 220 40% 92%;
+    --ring: 263 70% 64%;
+
+    --radius: 0.75rem;
+
+    /* Custom design tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(263 70% 64%) 0%, hsl(280 65% 70%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(250 100% 99%) 0%, hsl(263 90% 97%) 100%);
+    --shadow-soft: 0 8px 30px -10px hsl(263 70% 64% / 0.2);
+    --shadow-hover: 0 20px 40px -15px hsl(263 70% 64% / 0.35);
+    --glass-bg: hsl(0 0% 100% / 0.7);
+    --glass-border: hsl(0 0% 100% / 0.2);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 250 50% 5%;
+    --foreground: 0 0% 100%;
+
+    --card: 250 40% 8%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 250 40% 8%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 280 100% 70%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 250 30% 12%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 250 30% 12%;
+    --muted-foreground: 0 0% 80%;
+
+    --accent: 320 100% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 250 30% 18%;
+    --input: 250 30% 18%;
+    --ring: 280 100% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Better mobile touch targets */
+  @media (max-width: 768px) {
+    button, a, input, select, textarea {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Prevent horizontal scroll on mobile */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Hide Spline watermark */
+  .spline-container a,
+  .spline-container a[href*="spline"],
+  .spline-container div[style*="position: absolute"][style*="bottom"],
+  .spline-container > div > a,
+  canvas + a,
+  canvas + div > a,
+  [id*="spline-watermark"],
+  [class*="spline-watermark"],
+  a[href*="spline.design"],
+  a[aria-label*="Spline"],
+  div[style*="z-index: 100"] a,
+  div[style*="z-index: 999"] a,
+  div[style*="z-index: 9999"] a {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Additional watermark hiding */
+  .spline-container > div > div:last-child,
+  .spline-container canvas + div:last-child {
+    display: none !important;
+  }
+}
+
+@layer components {
+  /* Force hide any Spline branding in chatbot */
+  .spline-container * {
+    position: relative;
+  }
+  
+  .spline-container *:has(> a[href*="spline"]) {
+    display: none !important;
+  }
+}
